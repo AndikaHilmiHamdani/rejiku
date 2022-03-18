@@ -17,13 +17,13 @@ class UserManajerSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $manajer= User::create([
             'nama_karyawan'=>'Manajer',
             'alamat'=> 'jalanin doang ga jadian',
             'no_hp'=>'12344',
             'email'=>'manajer@rejiku.com',
             'password'=>Hash::make('12345678'),
         ]);
-        DB::table('users') ->assignRole('manajer');
+        $manajer ->assignRole('manajer');
     }
 }
