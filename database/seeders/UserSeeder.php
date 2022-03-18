@@ -24,15 +24,8 @@ class UserSeeder extends Seeder
             'no_hp'=>'12344',
             'password'=>Hash::make('12345678'),
         ]);
-        $kasir ->assignRole('kasir');
-        $manajer= User::create([
-            'nama_karyawan'=>'Manajer',
-            'alamat'=> 'jalanin doang ga jadian',
-            'no_hp'=>'12344',
-            'email'=>'manajer@rejiku.com',
-            'password'=>Hash::make('12345678'),
-        ]);
-        $manajer ->assignRole('manajer'); 
+        $kasir ->assignRole('kasir'); 
+        
         $kasir= User::create([
             'nama_karyawan'=>'Kasir 2',
             'alamat'=> 'jalan yok',
