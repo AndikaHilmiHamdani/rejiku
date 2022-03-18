@@ -17,11 +17,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'nama_karyawan'=>'Manajer',
-            'email'=>'admin@rejiku.com',
+            'nama_karyawan'=>'Kasir2',
+            'email'=>'kasir1@rejiku.com',
             'alamat'=> 'jalanin aja dulu',
             'no_hp'=>'12344',
-            'password'=>Hash::make('manajer123'),
+            'password'=>Hash::make('12345678'),
         ]);
     }
 }
