@@ -29,8 +29,8 @@ class UserSeeder extends Seeder
             'nama_karyawan'=>'Manajer',
             'alamat'=> 'jalanin doang ga jadian',
             'no_hp'=>'12344',
-            'email'=>'manajer2@rejiku.com',
-            'password'=>bcrypt('12345678')
+            'email'=>'manajer@rejiku.com',
+            'password'=>Hash::make('12345678'),
         ]);
         $manajer ->assignRole('manajer'); 
         $kasir= User::create([
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             'alamat'=> 'jalan yok',
             'no_hp'=>'12344',
             'email'=>'kasir2@rejiku.com',
-            'password'=>bcrypt('12345678')
+            'password'=>Hash::make('12345678'),
         ]);
         $kasir ->assignRole('kasir');
     }
