@@ -69,7 +69,7 @@
             <!-- Modal body -->
             <div class="max-h-48 overflow-y-scroll p-4">
                 <button onclick="tunai()">tunai</button>
-                <button id="pay" onclick="midtrans()">non-tunai</button>
+                <button id="nonTunai">non-tunai</button>
             </div>
 
             <!-- Modal footer -->
@@ -103,8 +103,29 @@
 
 <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre>
 </div>
-
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
 <script type="text/javascript">
+    document.getElementById('nonTunai').onclick = function() {
+        // SnapToken acquired from previous step
+        snap.pay('<?= $snapToken ?>', {
+            // Optional
+            onSuccess: function(result) {
+                /* You may add your own js here, this is just example */
+                document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+            },
+            // Optional
+            onPending: function(result) {
+                /* You may add your own js here, this is just example */
+                document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+            },
+            // Optional
+            onError: function(result) {
+                /* You may add your own js here, this is just example */
+                document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+            }
+        });
+    };
+
     function openModal(modalId) {
         modal = document.getElementById(modalId)
         modal.classList.remove('hidden')
