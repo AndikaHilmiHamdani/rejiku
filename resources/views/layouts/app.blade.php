@@ -244,9 +244,6 @@
             <p class="w-24 text-xl" style="margin-left: 225px;">Nasi Uduk</p>
           </div>
         </div>
-        <div class="relative absolute right-0 top-0" style="width: 23.32px; height: 643px;">
-          <img class="w-6 h-96 absolute rounded-lg" style="left: 0px; top: 24px;" src="img/scrolling.png" />
-        </div>
       </div>
       @endrole
 
