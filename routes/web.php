@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home',[MidtransController::class,'paymentgateway']);
+Route::resource('user',UserController::class);
