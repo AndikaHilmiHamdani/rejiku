@@ -88,30 +88,22 @@ class MidtransController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'status_code' => 'required',
-            'status_message' => 'required',
-            'transaction_id' => 'required',
-            'order_id' => 'required',
-            'gross_amount' => 'required',
-            'payment_type' => 'required',
-            'transaction_time' => 'required',
-            'transaction_status' => 'required',
-            'va_numbers' => 'required',
-        ]);
+        $order_id = $request->get('order_id');
+        $va_numbers = $request->get('va_numbers');
+        $transaction_id = $request->get('transaction_id');
+        $transaction_status = $request->get('transaction_status');
+        $payment_type = $request->get('payment_type');
+        $transaction_time = $request->get('transaction_time');
+        // $signature_key = $request->get('signature_key');
 
-        $data = Order::create([
-            'status_code' => $request['status_code'],
-            'status_message' => $request['status_message'],
-            'transaction_id' => $request['transaction_id'],
-            'order_id' => $request['order_id'],
-            'gross_amount' => $request['gross_amount'],
-            'payment_type' => $request['payment_type'],
-            'transaction_time' => $request['transaction_time'],
-            'transaction_status' => $request['transaction_status'],
-            'va_numbers' => $request['va_numbers'],
-        ])->save();
+        $order = Order::find($order_id)->firstOrFail();
+        $order->va_numbers = $va_numbers;
+        $order->transaction_id = $transaction_id;
+        $order->transaction_status = $transaction_status;
+        $order->payment_type = $payment_type;
+        $order->transaction_time = $transaction_time;
+        $order->save();
 
-        return $data;
+        return $order;
     }
 }
