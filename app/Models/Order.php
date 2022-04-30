@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $table = "order"; // Eloquent akan membuat model mahasiswa menyimpan record di tabel mahasiswas
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     protected $fillable = [
         'order_id',
