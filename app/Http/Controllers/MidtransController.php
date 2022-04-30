@@ -41,12 +41,11 @@ class MidtransController extends Controller
         $this->initMidtrans();
 
         $snapToken = '';
-        $order = Order::create();
-        $order->save();
+        $orderId = rand();
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $order->id,
+                'order_id' => $orderId,
                 'gross_amount' => $totalPrice,
             ),
 
@@ -79,8 +78,11 @@ class MidtransController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        $order->menu = $input;
-        $order->total_price = $totalPrice;
+        $order = Order::create([
+            "menu" => json_encode($input),
+            "total_price" => $totalPrice,
+            "order_id" => $orderId,
+        ]);
         $order->save();
 
         return view('users.kasir.checkout', ['snapToken' => $snapToken]);
@@ -96,7 +98,7 @@ class MidtransController extends Controller
         $transaction_time = $request->get('transaction_time');
         // $signature_key = $request->get('signature_key');
 
-        $order = Order::find($order_id)->firstOrFail();
+        $order = Order::where('order_id', $order_id)->firstOrFail();
         $order->va_numbers = $va_numbers;
         $order->transaction_id = $transaction_id;
         $order->transaction_status = $transaction_status;

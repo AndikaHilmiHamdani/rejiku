@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id();
             //item detail
+            $table->unsignedBigInteger('order_id');
+            $table->json('menu');
+            $table->unsignedInteger('total_price');
             $table->string('transaction_id')->nullable();
-            $table->json('menu')->nullable();
-            $table->unsignedInteger('total_price')->nullable();
             $table->string('payment_type')->nullable();
             $table->timestamp('transaction_time')->nullable();
             $table->string('transaction_status')->nullable();

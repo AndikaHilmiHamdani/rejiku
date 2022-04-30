@@ -13,9 +13,10 @@ class Order extends Model
     public $timestamps = false;
     protected $primaryKey = 'id'; // Memanggil isi DB Dengan primarykey
     protected $fillable = [
-        'transaction_id',
+        'order_id',
         'menu',
         'total_price',
+        'transaction_id',
         'payment_type',
         'transaction_time',
         'transaction_status',
