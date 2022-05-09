@@ -7,10 +7,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Tambahkan Anggota') }}</div>
+                <div class="card-header">{{ __('Tambahkan Menu') }}</div>
 
                 <div class="card-body">
-                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('user.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('menu.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
                         @csrf
 
                         <div class="row mb-3">
@@ -26,22 +26,30 @@
                                 @enderror
                             </div>
                         </div>
-                        
-                        <!--begin::Dropzone-->
-                        <div class="dropzone" id="kt_dropzonejs_example_1">
-                            <!--begin::Message-->
-                            <div class="dz-message needsclick">
-                                <!--begin::Icon-->
-                                <i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
-                                <!--end::Icon-->
 
-                                <!--begin::Info-->
-                                <div class="ms-4">
-                                    <h3 class="fs-5 fw-bolder text-gray-900 mb-4">Drop files here or click to upload.</h3>
-                                </div>
-                                <!--end::Info-->
+                        <div class="row mb-3">
+                            <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('image') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="file" class="form-control" required="required" name="image">
                             </div>
                         </div>
+
+                        <!--begin::Dropzone-->
+                        <!-- <div class="dropzone" id="kt_dropzonejs_example_1"> -->
+                        <!--begin::Message-->
+                        <!-- <div class="dz-message needsclick"> -->
+                        <!--begin::Icon-->
+                        <!-- <i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i> -->
+                        <!--end::Icon-->
+
+                        <!--begin::Info-->
+                        <!-- <div class="ms-4">
+                                    <h3 class="fs-5 fw-bolder text-gray-900 mb-4" name="image">Drop files here or click to upload.</h3>
+                                </div> -->
+                        <!--end::Info-->
+                        <!-- </div>
+                        </div> -->
                         <!--end::Dropzone-->
 
                         <div class="row mb-3">
@@ -58,34 +66,51 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0" style="margin-bottom: 20px;">
-                            <label class="col-sm-2 col-sm-2 control-label"></label>
-                            <div class="col-sm-8">
+                        <div class="row mb-3">
+                            <label for="kategori" class="col-md-4 col-form-label text-md-end">{{ __('kategori') }}</label>
 
-                                <a href="{{route('user.index')}}" class="btn btn-sm btn-secondary">Batal </a>
-                                <input type="submit" value="Submit" class="btn btn-sm btn-success" />&nbsp;
-                            </div>
+                            <select id="kategori" class="col-md-4 col-form-label text-md-end">
+                                @foreach($kategori_menu as $kategori)
+                                <option value="$kategori->id_kategori">{{$kategori->nama_kategori}}</option>
+                                @endforeach
+                            </select>
+
+                            @error('price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                    </form>
                 </div>
+
+                <div class="form-group row mb-0" style="margin-bottom: 20px;">
+                    <label class="col-sm-2 col-sm-2 control-label"></label>
+                    <div class="col-sm-8">
+
+                        <a href="{{route('home')}}" class="btn btn-sm btn-secondary">Batal </a>
+                        <input type="submit" value="Submit" class="btn btn-sm btn-success" />&nbsp;
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+</div>
 
-<script>
+<!-- <script>
     var myDropzone = new Dropzone("#kt_dropzonejs_example_1", {
-    url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-    paramName: "file", // The name that will be used to transfer the file
-    maxFiles: 1,
-    maxFilesize: 3, // MB
-    addRemoveLinks: true,
-    accept: function(file, done) {
-        if (file.name == "wow.jpg") {
-            done("Naha, you don't.");
-        } else {
-            done();
+        url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
+        paramName: "file", // The name that will be used to transfer the file
+        maxFiles: 1,
+        maxFilesize: 3, // MB
+        addRemoveLinks: true,
+        accept: function(file, done) {
+            if (file.name == "wow.jpg") {
+                done("Naha, you don't.");
+            } else {
+                done();
+            }
         }
-    }
-});
-</script>
+    });
+</script> -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori_Menu;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,9 @@ class MenuController extends Controller
      */
     public function create()
     {
+        $kategori_menu = Kategori_Menu::all();
         $menu = Menu::all();
-        return view('users.manajer.menu.menu-create', compact('menu'));
+        return view('users.manajer.menu.menu-create', compact('menu','kategori_menu'));
     }
 
     /**
@@ -36,7 +38,26 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //up foto
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
+        } else {
+            $image_name= 'img/user.png';
+        }
+        $request->validate([
+            'id_kategori' => 'required',
+            'nama_menu' => 'required',
+            'price' => 'required',
+            'image' => 'required',
+        ]);
+        $menu = new Menu();
+        $menu->kategori_menu->id_kategori= $request->get('id_kategori');
+        $menu->nama_menu = $request->get('nama_menu');
+        $menu->price= $request->get('price');
+        $menu ->image = $image_name;
+        $menu->save();
+
+        return redirect()->route('home');
     }
 
     /**
