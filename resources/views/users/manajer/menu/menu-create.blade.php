@@ -82,7 +82,7 @@
 
                             <select id="kategori_menu" class="col-md-4 col-form-label text-md-end" name="id_kategori">
                                 @foreach($kategori_menu as $kategori)
-                                <option value="{{$kategori->id_kategori}}" {{$menu->id_kategori== $kategori->id_kategori? "selected":null}}>{{ $kategori->nama_kategori }}</option>
+                                <option value="{{$kategori->id_kategori}}" {{isset($menu) && $menu->id_kategori== $kategori->id_kategori? "selected":null}}>{{ $kategori->nama_kategori }}</option>
                                 @endforeach
                             </select>
 
