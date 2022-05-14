@@ -50,10 +50,15 @@
                 </div>
                 @endrole
 
+                @if ($item->image)
                 <div class="w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url({{$item->image}});">
 
                 </div>
+                @else
+                <div class="w-full h-full bg-cover bg-center bg-no-repeat">
 
+                </div>
+                @endif
               </div>
               <p class="w-full text-xl text-center">{{$item->nama_menu}}</p>
               <p class="w-full text-xl text-center">Rp. {{$item->price}}</p>

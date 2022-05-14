@@ -26,12 +26,15 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $current_kategori=$request->input('id_kategori',"1");
-        $menu=Menu::all()->where('id_kategori',$current_kategori);
+        $current_kategori = $request->input('id_kategori', "1");
+        $menu = Menu::all()->where('id_kategori', $current_kategori);
         $kategori = Kategori_Menu::all();
         foreach ($menu as $item) {
-           $item->image=Storage::url($item->image);
+            if ($item->image) {
+                # code...
+                $item->image = Storage::url($item->image);
+            }
         }
-        return view('home',compact('menu','current_kategori','kategori'));
+        return view('home', compact('menu', 'current_kategori', 'kategori'));
     }
 }
