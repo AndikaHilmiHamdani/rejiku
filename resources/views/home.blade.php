@@ -1,8 +1,9 @@
+
 @extends('layouts.app')
 
 @section('content')
 @role('kasir')
-<div class="absolute rounded-lg border border-solid border-black" style="width: 425px; height: 853px; left: 1100px; top: 156px;">
+<div class="rounded-lg border border-solid border-black" style="width: 425px; height: 853px; left: 1100px; top: 156px;">
 
     <div class="relative" style="width: 524px; height: 853px; top:175px;">
 
@@ -74,7 +75,7 @@
 
 @endrole
 @role('manajer')
-<div class="absolute" style="width: 425px; height: 853px; left: 1100px; top: 156px;">
+<div class="" style="width: 425px; height: 853px; left: 1100px; top: 156px;">
 
     <div class="grid grid-rows-3 grid-flow-col gap-2">
         <div class="grid grid-cols-2 gap-4">

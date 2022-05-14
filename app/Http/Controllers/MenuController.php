@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori_Menu;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
@@ -15,7 +16,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -26,8 +27,8 @@ class MenuController extends Controller
     public function create()
     {
         $kategori_menu = Kategori_Menu::all();
-        $menu = Menu::all();
-        return view('users.manajer.menu.menu-create', compact('menu','kategori_menu'));
+        //$menu = Menu::all();
+        return view('users.manajer.menu.menu-create', compact('kategori_menu'));
     }
 
     /**
@@ -38,23 +39,27 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //up foto
-        if ($request->file('image')) {
-            $image_name = $request->file('image')->store('images', 'public');
-        } else {
-            $image_name= 'img/user.png';
-        }
+        // dd($request);
         $request->validate([
             'id_kategori' => 'required',
             'nama_menu' => 'required',
             'price' => 'required',
             'image' => 'required',
         ]);
-        $menu = new Menu();
-        $menu->kategori_menu->id_kategori= $request->get('id_kategori');
+        //up foto
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
+        } else {
+            $image_name= 'images/user.png';
+        }
+        
+
+
+        $menu = new Menu;
+        $menu->id_kategori = $request->get('id_kategori');
         $menu->nama_menu = $request->get('nama_menu');
-        $menu->price= $request->get('price');
-        $menu ->image = $image_name;
+        $menu->price = $request->get('price');
+        $menu->image = $image_name;
         $menu->save();
 
         return redirect()->route('home');
@@ -79,7 +84,9 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kategori_menu = Kategori_Menu::all();
+        $menu = Menu::find($id);
+        return view('users.manajer.menu.menu-create',compact('menu','kategori_menu'));
     }
 
     /**
@@ -91,7 +98,26 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_kategori' => 'required',
+            'nama_menu' => 'required',
+            'price' => 'required',
+        ]);
+        //up foto
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
+        } 
+        $menu = Menu::find($id);
+        $menu->id_kategori = $request->get('id_kategori');
+        $menu->nama_menu = $request->get('nama_menu');
+        $menu->price = $request->get('price');
+        if (isset($image_name)) {
+            # code...
+            $menu->image = $image_name;
+        }
+        $menu->save();
+
+        return redirect()->route('home');
     }
 
     /**
@@ -102,6 +128,7 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Menu::find($id)->delete();
+        return redirect()->route('home');
     }
 }

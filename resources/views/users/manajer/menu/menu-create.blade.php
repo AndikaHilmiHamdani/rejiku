@@ -10,14 +10,16 @@
                 <div class="card-header">{{ __('Tambahkan Menu') }}</div>
 
                 <div class="card-body">
-                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('menu.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{isset($menu)?route('menu.update',$menu->id_menu):route('menu.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
                         @csrf
-
+                        @if(isset($menu))
+                        @method('put')
+                        @endif
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nama Menu') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nama_menu" type="text" class="form-control @error('nama_menu') is-invalid @enderror" name="nama_menu" value="{{ old('nama_menu') }}" required autocomplete="name" autofocus>
+                                <input id="nama_menu" type="text" class="form-control @error('nama_menu') is-invalid @enderror" name="nama_menu" value="{{ $menu->nama_menu?? old('nama_menu') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -30,8 +32,17 @@
                         <div class="row mb-3">
                             <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('image') }}</label>
 
+                            
                             <div class="col-md-6">
-                                <input type="file" class="form-control" required="required" name="image">
+                                @if(isset($menu->image))
+                                <img class="max-w-[200px] max-h-[200px]"src="{{asset('storage/'.$menu->image)}}" alt="" srcset="">
+                                @endif
+                                <input type="file" class="form-control" {{!isset($menu->image)?"required":null}} name="image" >
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -56,7 +67,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Harga') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
+                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{$menu->price?? old('price') }}" required autocomplete="price" autofocus>
 
                                 @error('price')
                                 <span class="invalid-feedback" role="alert">
@@ -67,31 +78,30 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="kategori" class="col-md-4 col-form-label text-md-end">{{ __('kategori') }}</label>
+                            <label for="kategori_menu" class="col-md-4 col-form-label text-md-end">{{ __('kategori') }}</label>
 
-                            <select id="kategori" class="col-md-4 col-form-label text-md-end">
+                            <select id="kategori_menu" class="col-md-4 col-form-label text-md-end" name="id_kategori">
                                 @foreach($kategori_menu as $kategori)
-                                <option value="$kategori->id_kategori">{{$kategori->nama_kategori}}</option>
+                                <option value="{{$kategori->id_kategori}}" {{$menu->id_kategori== $kategori->id_kategori? "selected":null}}>{{ $kategori->nama_kategori }}</option>
                                 @endforeach
                             </select>
 
-                            @error('price')
+                            @error('id_kategori')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                </div>
+                        <div class="form-group row mb-0" style="margin-bottom: 20px;">
+                            <label class="col-sm-2 col-sm-2 control-label"></label>
+                            <div class="col-sm-8">
 
-                <div class="form-group row mb-0" style="margin-bottom: 20px;">
-                    <label class="col-sm-2 col-sm-2 control-label"></label>
-                    <div class="col-sm-8">
-
-                        <a href="{{route('home')}}" class="btn btn-sm btn-secondary">Batal </a>
-                        <input type="submit" value="Submit" class="btn btn-sm btn-success" />&nbsp;
-                    </div>
+                                <a href="{{route('home')}}" class="btn btn-sm btn-secondary">Batal </a>
+                                <input type="submit" value="submit" class="btn btn-sm btn-success" />&nbsp;
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
