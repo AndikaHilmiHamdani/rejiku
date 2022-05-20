@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -19,53 +18,53 @@
             </div>
         </div>
 
-        <!-- menu -->
-        <div class="absolute" style="left:10px;top: 125px;">
-            <div class="grid grid-cols-6 gap-4">
-                <div class="row-start-1 col-end-1">
-                    <p class="text-xl text-gray-400">Nasi Goreng</p>
-                </div>
-                <div class="row-start-1 col-end-2">
-                    <button><img class="w-full h-5" src="img/minus.png" /></button>
-                </div>
-                <div class="quantity row-start-1 col-end-3">
-                    <p class="text-xl text-gray-400">1</p>
-                </div>
-                <div class="row-start-1 col-end-4">
-                    <button><img class="w-full h-5" src="img/plus.png" /></button>
-                </div>
-                <div class="row-start-1 col-end-5" style="width: 75px;">
-                    <p class="text-sm text-green-500">Rp. 20.000</p>
-                </div>
+        <!-- bayar -->
+        <form action="/checkout" method="post">
+            @csrf
+            @method('POST')
+            <div class="absolute" style="width: 417px; height: 86px; left: 50px; top: 728px;">
+                <button id="bayar" class="flex items-center justify-center px-44 pt-6 pb-8 bg-green-500 rounded-2xl" style="width: 300px; height: 50px;">
+                    <p class="text-2xl font-bold text-white">Bayar</p>
+                </button>
             </div>
-            <div class="py-2">
-                <div class="w-96 border-t border-gray-500" style="top:75px"></div>
-            </div>
-        </div>
+            <!-- menu -->
+            <div class="absolute" id="clicked_menu" style="left:10px;top: 125px;">
+                <div class="grid grid-cols-6 gap-4">
+                    <div class="row-start-1 col-end-1">
+                        <input id="nama_menu" name="id_menu[]" class="text-xl text-gray-400" readonly />
+                    </div>
+                    <div class="row-start-1 col-end-2">
+                        <button type="button"><img class="w-full h-5" src="img/minus.png" id="minus" /></button>
+                    </div>
+                    <div class="quantity row-start-1 col-end-3">
+                        <input class="text-xl text-gray-400" id="quantity" name="quantity[]" readonly/>
+                    </div>
+                    <div class="row-start-1 col-end-4">
+                        <button type="button"><img class="w-full h-5" src="img/plus.png" id="plus" /></button>
+                    </div>
+                    <div class="row-start-1 col-end-5" style="width: 75px;">
+                        <p class="text-sm text-green-500" id="totalPrice"></p>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <div class="w-96 border-t border-gray-500" style="top:75px"></div>
+                </div>
 
+            </div>
+
+            <!-- <input class="text-xl text-gray-400" id="nama_menu" name="menu[].nama_menu" value="{{$menu[0]->nama_menu}}" readonly></input>
+            <input class="text-sm text-green-500" id="totalPrice" name="menu[].price" value="{{$menu[0]->price}}" readonly></input>
+            <input id="inputnama_menu" name="id_menu[]" class="text-xl text-gray-400" readonly />
+            <input name="quantity[]" value="2" /> -->
+        </form>
         <!-- catatan -->
         <div class="inline-flex space-x-2.5 items-center justify-end w-36 h-10 absolute" style="left: 47px; top: 430px;">
             <button class="w-10 h-10"><img src="img/catatan.png" alt=""></button>
             <p class="text-2xl text-green-500">Catatan</p>
         </div>
 
-        <!-- bayar -->
-        <form action="/checkout" method="post">
-            @csrf
-            @method('POST')
-            <div class="absolute" style="width: 417px; height: 86px; left: 50px; top: 728px;">
-                <button id="bayar" class="flex items-center justify-center px-44 pt-6 pb-8 bg-green-500 rounded-2xl" style="width: 300px; height: 50px;" >
-                    <p class="text-2xl font-bold text-white">Bayar</p>
-                </button>
-            </div>
 
-            <input name="id_menu[]" value="1" />
-            <input name="id_menu[]" value="2" />
-            <input name="quantity[]" value="1" />
-            <input name="quantity[]" value="2" />
-        </form>
 
-       
     </div>
 
 </div>

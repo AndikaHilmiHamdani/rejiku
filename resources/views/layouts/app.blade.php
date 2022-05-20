@@ -13,11 +13,11 @@
 
         <div class="kategori mx-4 mt-2">
           <div class="inline-flex bg-white bg-opacity-50 border rounded-lg border-black ml-4" style="width: 750px; height: 35px; margin: left 10px;">
-          @foreach ($kategori as $kategori)
+            @foreach ($kategori as $kategori)
             <a href="?id_kategori={{$kategori->id_kategori}}">
               <p class="text-2xl mx-4 mt-2 {{$current_kategori==$kategori->id_kategori?'active:underline text-green-500':null}}">{{$kategori->nama_kategori}}</p>
             </a>
-          @endforeach
+            @endforeach
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
             <div class="inline-flex flex-col space-y-2.5 items-start">
 
 
-              <div class="group relative inline-flex items-center justify-center w-full h-64 pb-0.5 bg-gray-300">
+              <div class="group relative inline-flex items-center justify-center w-full h-64 pb-0.5 bg-gray-300" id="menu" onclick="clickMenu({{$item->id_menu}})">
                 @role('manajer')
                 <div class="absolute w-full h-full bg-gray-700/90 hidden group-hover:flex justify-center items-center gap-4">
                   <a class="inline " href="{{route('menu.edit', $item->id_menu)}}">
@@ -75,3 +75,51 @@
 </body>
 
 </html>
+<script>
+  var result = <?php echo $menu->values()->toJson() ?>;
+  var clicked_menu
+  let plus = document.getElementById('plus')
+  let minus = document.getElementById('minus')
+  let count = 1
+
+  clickMenu = (str) => {
+    console.log("clicked")
+    console.log(str)
+    clicked_menu = document.getElementById('clicked_menu')
+
+    if (str == "") {
+      nama_menu = document.getElementById('nama_menu').innerHTML = ""
+    } else {
+      //looping result nama_menu
+      var menu = result.find(item => item.id_menu == str)
+
+      document.getElementById('nama_menu').value = menu.id_menu
+      document.getElementById('totalPrice').innerHTML = menu.price
+      document.getElementById('quantity').value = count
+    }
+    
+    //count total price
+    plus.addEventListener("click", () => {
+      
+      if ( count == 0||count > 0) {
+        count++
+        document.getElementById('quantity').value = count
+        var totprice = document.getElementById('totalPrice').innerHTML = menu.price * count
+      } else if (count < 0) {
+        console.log("jumlah tidak sesuai")
+      } 
+    })
+
+    minus.addEventListener("click", () => {
+      if (count > 0) {
+        count--
+        document.getElementById('quantity').value = count
+        var totprice = document.getElementById('totalPrice').innerHTML = menu.price * count
+      } else {
+        console.log("jumlah tidak sesuai")
+      }
+
+    })
+
+  }
+</script>
