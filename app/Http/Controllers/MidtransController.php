@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class MidtransController extends Controller
 {
@@ -107,5 +108,13 @@ class MidtransController extends Controller
         $order->save();
 
         return $order;
+    }
+
+    public function cetakpdf()
+    {
+        
+        $order = Order::all();
+        $pdf = PDF::loadview('users.manajer.cetakpdf',compact('order'));
+        return $pdf->stream();
     }
 }

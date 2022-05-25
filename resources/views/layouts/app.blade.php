@@ -77,7 +77,7 @@
 </html>
 <script>
   var result = <?php echo $menu->values()->toJson() ?>;
-  var clicked_menu
+  var clicked_menu, menu
   let plus = document.getElementById('plus')
   let minus = document.getElementById('minus')
   let count = 1
@@ -86,16 +86,23 @@
     console.log("clicked")
     console.log(str)
     clicked_menu = document.getElementById('clicked_menu')
-
+    // clicked_menu = document.createElement("div")
+    // clicked_menu.append("tes")
+    // console.log(clicked_menu)
     if (str == "") {
       nama_menu = document.getElementById('nama_menu').innerHTML = ""
     } else {
       //looping result nama_menu
       var menu = result.find(item => item.id_menu == str)
 
-      document.getElementById('nama_menu').value = menu.id_menu
-      document.getElementById('totalPrice').innerHTML = menu.price
-      document.getElementById('quantity').value = count
+      document.createElement("div")
+      const nama_menu = document.getElementById('nama_menu').value = menu.id_menu
+      clicked_menu.append(nama_menu)
+
+      const totPrice = document.getElementById('totalPrice').innerHTML = menu.price
+      const qty = document.getElementById('quantity').value = count
+      clicked_menu.append(qty)
+      clicked_menu.append(totPrice)
     }
     
     //count total price

@@ -25,5 +25,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/checkout',[MidtransController::class,'paymentgateway']);
 Route::post('/notifications',[MidtransController::class,'store']);
+Route::get('/cetak',[MidtransController::class,'cetakpdf']);
 Route::resource('user',UserController::class);
 Route::resource('menu',MenuController::class);

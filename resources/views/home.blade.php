@@ -99,7 +99,7 @@
         </div>
         <div class="grid grid-cols-2 gap-4">
             <div class="col-end-2 row-start-1">
-                <a href="">
+                <a href="/cetak">
                     <p class="text-2xl">Cetak Laporan</p>
                 </a>
             </div>
