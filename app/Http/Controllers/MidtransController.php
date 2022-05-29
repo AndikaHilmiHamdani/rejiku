@@ -117,6 +117,10 @@ class MidtransController extends Controller
         $order = Order::all();
         foreach ($order as $item) {
             $item->menu = json_decode($item->menu);
+            
+            if ($item->va_numbers) {
+                $item->va_numbers = json_decode($item->va_numbers);
+            }
         }
         $pdf = PDF::loadview('users.manajer.cetakpdf',compact('order'));
         return $pdf->stream();

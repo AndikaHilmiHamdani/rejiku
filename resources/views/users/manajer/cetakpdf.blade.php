@@ -43,7 +43,7 @@
             <td>{{ $order->payment_type ?? '-' }}</td>
             <td>{{ $order->transaction_time ?? '-' }}</td>
             <td>{{ $order->transaction_status ?? 'Belum Bayar' }}</td>
-            <td>{{ $order->va_number ?? '-' }}</td>
+            <td>{{ $order->va_numbers ? $order->va_numbers[0]->va_number : '-' }}</td>
         </tr>
         @endforeach
     
