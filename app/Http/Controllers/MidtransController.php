@@ -81,12 +81,13 @@ class MidtransController extends Controller
             "menu" => json_encode($input),
             "total_price" => $totalPrice,
             "order_id" => $orderId,
+            "payment_type" => "tunai",
         ]);
         $order->save();
 
         Checkout::with('menu')->where('id_user', '=', $idUser)->delete();
 
-        return view('users.kasir.checkout', ['snapToken' => $snapToken]);
+        return view('users.kasir.checkout', compact('snapToken', 'cart'));
     }
 
     public function store(Request $request)
@@ -114,6 +115,9 @@ class MidtransController extends Controller
     {
         
         $order = Order::all();
+        foreach ($order as $item) {
+            $item->menu = json_decode($item->menu);
+        }
         $pdf = PDF::loadview('users.manajer.cetakpdf',compact('order'));
         return $pdf->stream();
     }

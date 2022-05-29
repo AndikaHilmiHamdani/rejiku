@@ -34,12 +34,16 @@
         <tr>
             <td>{{ $order->id }}</td>
             <td>{{ $order->order_id }}</td>
-            <td>{{ $order->menu }}</td>
+            <td>
+                @foreach($order->menu as $item)
+                <div>{{ $item->nama_menu }} x {{ $item->quantity }}</div>
+                @endforeach
+            </td>
             <td>{{ $order->total_price }}</td>
-            <td>{{ $order->transaction_id }}</td>
-            <td>{{ $order->payment_type }}</td>
-            <td>{{ $order->transaction_status }}</td>
-            <td>{{ $order->va_number }}</td>
+            <td>{{ $order->payment_type ?? '-' }}</td>
+            <td>{{ $order->transaction_time ?? '-' }}</td>
+            <td>{{ $order->transaction_status ?? 'Belum Bayar' }}</td>
+            <td>{{ $order->va_number ?? '-' }}</td>
         </tr>
         @endforeach
     
