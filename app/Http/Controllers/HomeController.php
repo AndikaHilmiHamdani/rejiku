@@ -26,6 +26,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $idUser = auth()->user()->id;
         $current_kategori = $request->input('id_kategori', "1");
         $menu = Menu::all()->where('id_kategori', $current_kategori);
         $kategori = Kategori_Menu::all();
@@ -35,6 +36,6 @@ class HomeController extends Controller
                 $item->image = Storage::url($item->image);
             }
         }
-        return view('home', compact('menu', 'current_kategori', 'kategori'));
+        return view('home', compact('menu', 'current_kategori', 'kategori', 'idUser'));
     }
 }

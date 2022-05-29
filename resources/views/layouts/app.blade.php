@@ -81,31 +81,35 @@
   // let plus = document.getElementById('plus')
   // let minus = document.getElementById('minus')
   let count = 1
-  const checkoutItems = new Map()
+  displayItems();
 
-  function displayItems() {
+  async function displayItems() {
+    const resp = await fetch('/api/cart?id_user={{$idUser}}');
+    const itemList = await resp.json();
+
     clicked_menu = document.getElementById('clicked_menu')
     clicked_menu.innerHTML = ''
-    checkoutItems.forEach((quantity, idMenu) => {
-      const menu = result.find(item => item.id_menu == idMenu)
-      console.log()
+    if (itemList.length == 0) {
+      clicked_menu.innerHTML = '<span>Silahkan Pilih Menu<span>'
+      return
+    }
+    itemList.forEach(({quantity, menu}) => {
       const element = `
       <div class="flex gap-2 w-full">
-          <input name="id_menu[]" class="hidden" value="${menu.id_menu}" readonly />
           <div class="grow text-xl text-gray-400" >
             ${menu.nama_menu}
           </div>
           <div class="flex">
               <div>
-                  <button type="button"><img class="w-full h-5" src="img/minus.png" id="minus" /></button>
+                  <button type="button" onclick="clickMenu(${menu.id_menu},-1)"><img class="w-full h-5" src="img/minus.png" /></button>
               </div>
-              <input class="text-xl text-gray-400 text-center" size="3" id="quantity" name="quantity[]" readonly value="${quantity}"/>
+              <input class="text-xl text-gray-400 text-center" size="3" readonly value="${quantity}"/>
               <div>
-                  <button type="button"><img class="w-full h-5" src="img/plus.png" id="plus" /></button>
+                  <button type="button" onclick="clickMenu(${menu.id_menu},1)"><img class="w-full h-5" src="img/plus.png" /></button>
               </div>
           </div>
           <div class="grow">
-              <p class="text-sm text-green-500" id="totalPrice">Rp 12000</p>
+              <p class="text-sm text-green-500" id="totalPrice">Rp ${quantity * menu.price}</p>
           </div>
       </div>`
 
@@ -113,18 +117,19 @@
     })
   }
 
-  clickMenu = (idMenu) => {
-    console.log("clicked", idMenu)
-    var menu = result.find(item => item.id_menu == idMenu)
-    if (menu) {
-      const quantity = checkoutItems.get(idMenu)
-      if (quantity) {
-        checkoutItems.set(idMenu, quantity + 1)
-      } else {
-        checkoutItems.set(idMenu, 1)
-      }
-      displayItems()
-    }
+  clickMenu = async (idMenu, quantity = 1) => {
+    const resp = await fetch('/api/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id_user: parseInt('{{$idUser}}'),
+        id_menu: idMenu,
+        quantity,
+      }),
+    })
+    displayItems()
 
     //count total price
     // plus.addEventListener("click", () => {

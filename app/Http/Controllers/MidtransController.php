@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Checkout;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\User;
@@ -18,22 +19,19 @@ class MidtransController extends Controller
     public function paymentgateway(Request $request)
     {
         //Auth user
-        Auth::user();
-        $id_menu = $request->get('id_menu');
-        $quantity = $request->get('quantity');
+        $idUser = auth()->user()->id;
+        $cart = Checkout::with('menu')->where('id_user', '=', $idUser)->get();
 
         $input = [];
         $totalPrice = 0;
-        $menu = Menu::all()->whereIn('id_menu', $id_menu);
-        foreach ($menu as $item) {
-            $menuIndex = array_search($item->id_menu, $id_menu);
-            $totalPrice += $item->price;
+        foreach ($cart as $item) {
+            $totalPrice += $item->menu->price;
             array_push($input, [
                 "id_menu" => $item->id_menu,
-                "quantity" => $quantity[$menuIndex],
-                "nama_menu" => $item->nama_menu,
-                "price" => $item->price,
-                "nama_kategori" => $item->id_kategori,
+                "quantity" => $item->quantity,
+                "nama_menu" => $item->menu->nama_menu,
+                "price" => $item->menu->price,
+                "nama_kategori" => $item->menu->id_kategori,
             ]);
         }
         //get data user all
@@ -85,6 +83,8 @@ class MidtransController extends Controller
             "order_id" => $orderId,
         ]);
         $order->save();
+
+        Checkout::with('menu')->where('id_user', '=', $idUser)->delete();
 
         return view('users.kasir.checkout', ['snapToken' => $snapToken]);
     }

@@ -31,11 +31,6 @@
             <div class="absolute w-full" id="clicked_menu" style="left:10px;top: 125px;">
                 <!-- Menu items displayed here -->
             </div>
-
-            <!-- <input class="text-xl text-gray-400" id="nama_menu" name="menu[].nama_menu" value="{{$menu[0]->nama_menu}}" readonly></input>
-            <input class="text-sm text-green-500" id="totalPrice" name="menu[].price" value="{{$menu[0]->price}}" readonly></input>
-            <input id="inputnama_menu" name="id_menu[]" class="text-xl text-gray-400" readonly />
-            <input name="quantity[]" value="2" /> -->
         </form>
         <!-- catatan -->
         <div class="inline-flex space-x-2.5 items-center justify-end w-36 h-10 absolute" style="left: 47px; top: 430px;">
