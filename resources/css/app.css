@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#clicked_menu::after {
+    @apply block;
+    @apply w-full;
+    @apply border-t border-gray-500;
+    content: '';
+}

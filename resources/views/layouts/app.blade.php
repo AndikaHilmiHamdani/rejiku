@@ -78,55 +78,76 @@
 <script>
   var result = <?php echo $menu->values()->toJson() ?>;
   var clicked_menu, menu
-  let plus = document.getElementById('plus')
-  let minus = document.getElementById('minus')
+  // let plus = document.getElementById('plus')
+  // let minus = document.getElementById('minus')
   let count = 1
+  const checkoutItems = new Map()
 
-  clickMenu = (str) => {
-    console.log("clicked")
-    console.log(str)
+  function displayItems() {
     clicked_menu = document.getElementById('clicked_menu')
-    // clicked_menu = document.createElement("div")
-    // clicked_menu.append("tes")
-    // console.log(clicked_menu)
-    if (str == "") {
-      nama_menu = document.getElementById('nama_menu').innerHTML = ""
-    } else {
-      //looping result nama_menu
-      var menu = result.find(item => item.id_menu == str)
+    clicked_menu.innerHTML = ''
+    checkoutItems.forEach((quantity, idMenu) => {
+      const menu = result.find(item => item.id_menu == idMenu)
+      console.log()
+      const element = `
+      <div class="flex gap-2 w-full">
+          <input name="id_menu[]" class="hidden" value="${menu.id_menu}" readonly />
+          <div class="grow text-xl text-gray-400" >
+            ${menu.nama_menu}
+          </div>
+          <div class="flex">
+              <div>
+                  <button type="button"><img class="w-full h-5" src="img/minus.png" id="minus" /></button>
+              </div>
+              <input class="text-xl text-gray-400 text-center" size="3" id="quantity" name="quantity[]" readonly value="${quantity}"/>
+              <div>
+                  <button type="button"><img class="w-full h-5" src="img/plus.png" id="plus" /></button>
+              </div>
+          </div>
+          <div class="grow">
+              <p class="text-sm text-green-500" id="totalPrice">Rp 12000</p>
+          </div>
+      </div>`
 
-      document.createElement("div")
-      const nama_menu = document.getElementById('nama_menu').value = menu.id_menu
-      clicked_menu.append(nama_menu)
-
-      const totPrice = document.getElementById('totalPrice').innerHTML = menu.price
-      const qty = document.getElementById('quantity').value = count
-      clicked_menu.append(qty)
-      clicked_menu.append(totPrice)
-    }
-    
-    //count total price
-    plus.addEventListener("click", () => {
-      
-      if ( count == 0||count > 0) {
-        count++
-        document.getElementById('quantity').value = count
-        var totprice = document.getElementById('totalPrice').innerHTML = menu.price * count
-      } else if (count < 0) {
-        console.log("jumlah tidak sesuai")
-      } 
+      clicked_menu.insertAdjacentHTML('beforeend', element)
     })
+  }
 
-    minus.addEventListener("click", () => {
-      if (count > 0) {
-        count--
-        document.getElementById('quantity').value = count
-        var totprice = document.getElementById('totalPrice').innerHTML = menu.price * count
+  clickMenu = (idMenu) => {
+    console.log("clicked", idMenu)
+    var menu = result.find(item => item.id_menu == idMenu)
+    if (menu) {
+      const quantity = checkoutItems.get(idMenu)
+      if (quantity) {
+        checkoutItems.set(idMenu, quantity + 1)
       } else {
-        console.log("jumlah tidak sesuai")
+        checkoutItems.set(idMenu, 1)
       }
+      displayItems()
+    }
 
-    })
+    //count total price
+    // plus.addEventListener("click", () => {
+
+    //   if (count == 0 || count > 0) {
+    //     count++
+    //     document.getElementById('quantity').value = count
+    //     var totprice = document.getElementById('totalPrice').innerHTML = menu.price * count
+    //   } else if (count < 0) {
+    //     console.log("jumlah tidak sesuai")
+    //   }
+    // })
+
+    // minus.addEventListener("click", () => {
+    //   if (count > 0) {
+    //     count--
+    //     document.getElementById('quantity').value = count
+    //     var totprice = document.getElementById('totalPrice').innerHTML = menu.price * count
+    //   } else {
+    //     console.log("jumlah tidak sesuai")
+    //   }
+
+    // })
 
   }
 </script>

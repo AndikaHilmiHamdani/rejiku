@@ -2,9 +2,9 @@
 
 @section('content')
 @role('kasir')
-<div class="rounded-lg border border-solid border-black" style="width: 425px; height: 853px; left: 1100px; top: 156px;">
+<div class="rounded-lg border border-solid border-black" style="width: 425px; height: 853px; left: 1100px; top: 156px; overflow-x: scroll;">
 
-    <div class="relative" style="width: 524px; height: 853px; top:175px;">
+    <div class="relative" style=" height: 853px; top:175px;">
 
         <!-- daftar pesanan -->
         <div class="absolute border-solid border-black" style="width: 300px; height: 51.50px; left:50px;top: 30px;">
@@ -28,28 +28,8 @@
                 </button>
             </div>
             <!-- menu -->
-            <div class="absolute" id="clicked_menu" style="left:10px;top: 125px;">
-                <div class="grid grid-cols-6 gap-4">
-                    <div class="row-start-1 col-end-1">
-                        <input id="nama_menu" name="id_menu[]" class="text-xl text-gray-400" readonly />
-                    </div>
-                    <div class="row-start-1 col-end-2">
-                        <button type="button"><img class="w-full h-5" src="img/minus.png" id="minus" /></button>
-                    </div>
-                    <div class="quantity row-start-1 col-end-3">
-                        <input class="text-xl text-gray-400" id="quantity" name="quantity[]" readonly/>
-                    </div>
-                    <div class="row-start-1 col-end-4">
-                        <button type="button"><img class="w-full h-5" src="img/plus.png" id="plus" /></button>
-                    </div>
-                    <div class="row-start-1 col-end-5" style="width: 75px;">
-                        <p class="text-sm text-green-500" id="totalPrice"></p>
-                    </div>
-                </div>
-                <div class="py-2">
-                    <div class="w-96 border-t border-gray-500" style="top:75px"></div>
-                </div>
-
+            <div class="absolute w-full" id="clicked_menu" style="left:10px;top: 125px;">
+                <!-- Menu items displayed here -->
             </div>
 
             <!-- <input class="text-xl text-gray-400" id="nama_menu" name="menu[].nama_menu" value="{{$menu[0]->nama_menu}}" readonly></input>
