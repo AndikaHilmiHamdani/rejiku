@@ -82,6 +82,7 @@ class MidtransController extends Controller
             "total_price" => $totalPrice,
             "order_id" => $orderId,
             "payment_type" => "tunai",
+            "transaction_time" => now()
         ]);
         $order->save();
 
@@ -117,7 +118,7 @@ class MidtransController extends Controller
         $order = Order::all();
         foreach ($order as $item) {
             $item->menu = json_decode($item->menu);
-            
+
             if ($item->va_numbers) {
                 $item->va_numbers = json_decode($item->va_numbers);
             }

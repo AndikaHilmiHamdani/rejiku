@@ -140,12 +140,12 @@
     }
 
     function tunai() {
-        closeModal('modal')
         openModal('tunai')
     }
 
     function closeModal(modalId) {
         modal = document.getElementById(modalId)
         modal.classList.add('hidden')
+        document.location = "/home"
     }
 </script>
