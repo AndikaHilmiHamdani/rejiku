@@ -177,10 +177,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
@@ -196,10 +197,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
@@ -213,10 +215,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
@@ -232,10 +235,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
@@ -249,10 +253,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
@@ -268,10 +273,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
@@ -285,10 +291,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
@@ -304,10 +311,11 @@
                                     <div class="card-body">
                                         <div class="clearfix mb-3"> <span
                                                 class="float-start badge rounded-pill bg-success">Rp.10000</span>
-                                            <span class="float-end"><a href="#">Example</a></span>
+
                                         </div>
                                         <h5 class="card-title">Nasi Goreng</h5>
-                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn btn-warning">Add</a>
+                                        <div class="d-grid gap-2 my-4"> <a href="#" class="btn "
+                                                style="background-color:  #16A899">Add</a>
                                         </div>
                                     </div>
                                 </div>
