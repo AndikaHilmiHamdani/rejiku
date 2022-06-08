@@ -38,4 +38,8 @@ class HomeController extends Controller
         }
         return view('home', compact('menu', 'current_kategori', 'kategori', 'idUser'));
     }
+    public function menu()
+    {
+        return view('users.kasir.menu');
+    }
 }
